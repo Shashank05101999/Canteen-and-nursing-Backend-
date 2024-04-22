@@ -24,4 +24,5 @@ __decorate([
     (0, class_validator_1.MinLength)(8),
     __metadata("design:type", String)
 ], LoginDto.prototype, "password", void 0);
+console.log("test");
 //# sourceMappingURL=Login.dto.js.map

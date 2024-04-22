@@ -9,3 +9,4 @@ export class LoginDto {
   @MinLength(8)
   readonly password: string;
 }
+console.log("test");
