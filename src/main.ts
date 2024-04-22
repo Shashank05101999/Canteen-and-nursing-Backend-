@@ -24,7 +24,9 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  app.useStaticAssets(path.join(__dirname, '../public'));
+  // app.useStaticAssets(path.join(__dirname, '.../public'));
+  app.useStaticAssets(path.join(__dirname, '..', 'public'));
+
   // Enable CORS
   app.enableCors(corsOptions);
   await app.listen(3002);

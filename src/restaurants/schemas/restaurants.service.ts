@@ -36,7 +36,7 @@ export class RestaurantsService {
   }
 
   //create new restaurant =>  POST/ restaurants
-  async create(createRestaurantDto:CreateRestaurantDto): Promise<Restaurant> {
+  async create(createRestaurantDto: CreateRestaurantDto): Promise<Restaurant> {
     const res = await this.restaurantModel.create(createRestaurantDto);
     return res.save();
   }

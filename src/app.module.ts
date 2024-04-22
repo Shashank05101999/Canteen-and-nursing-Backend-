@@ -25,7 +25,7 @@ import { AuthModule } from './auth/auth.module';
     ComboModule,
     NursingModule,
     MedicineStockModule,
-    AuthModule
+    AuthModule,
   ],
 
   controllers: [AppController],

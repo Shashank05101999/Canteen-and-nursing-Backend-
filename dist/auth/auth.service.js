@@ -18,25 +18,51 @@ const mongoose_1 = require("@nestjs/mongoose");
 const user_schema_1 = require("./schema/user.schema");
 const mongoose_2 = require("mongoose");
 const bcrypt = require("bcryptjs");
+const apifeatures_utils_1 = require("../utils/apifeatures.utils");
+const jwt_1 = require("@nestjs/jwt");
 let AuthService = class AuthService {
-    constructor(userModel) {
+    constructor(userModel, jwtService) {
         this.userModel = userModel;
+        this.jwtService = jwtService;
     }
     async signUp(signUpDto) {
         const { name, email, password } = signUpDto;
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = await this.userModel.create({
-            name,
-            email,
-            password: hashedPassword,
-        });
-        return user;
+        try {
+            const user = await this.userModel.create({
+                name,
+                email,
+                password: hashedPassword,
+            });
+            const token = await apifeatures_utils_1.default.assignJwtToken(user._id, user.email, user.name, this.jwtService);
+            return { token };
+        }
+        catch (error) {
+            if (error.code === 11000) {
+                throw new common_1.ConflictException('Duplicate  Email enterned');
+            }
+        }
+    }
+    async login(LoginDto) {
+        const { email, password } = LoginDto;
+        const user = await this.userModel.findOne({ email }).select('+password');
+        if (!user) {
+            throw new common_1.UnauthorizedException('invalid email adress or  password');
+        }
+        const isPasswordMatched = await bcrypt.compare(password, user.password);
+        if (!isPasswordMatched) {
+            throw new common_1.UnauthorizedException('invalid email adress or  password');
+        }
+        const token = await apifeatures_utils_1.default.assignJwtToken(user._id, user.email, user.name, this.jwtService);
+        return { token };
+        console.log(user);
     }
 };
 exports.AuthService = AuthService;
 exports.AuthService = AuthService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)(user_schema_1.User.name)),
-    __metadata("design:paramtypes", [mongoose_2.Model])
+    __metadata("design:paramtypes", [mongoose_2.Model,
+        jwt_1.JwtService])
 ], AuthService);
 //# sourceMappingURL=auth.service.js.map

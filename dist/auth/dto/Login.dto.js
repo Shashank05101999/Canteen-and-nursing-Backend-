@@ -9,22 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SignUpDto = void 0;
+exports.LoginDto = void 0;
 const class_validator_1 = require("class-validator");
-class SignUpDto {
+class LoginDto {
 }
-exports.SignUpDto = SignUpDto;
+exports.LoginDto = LoginDto;
 __decorate([
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], SignUpDto.prototype, "name", void 0);
-__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsEmail)({}, { message: 'please enter correct email address' }),
     __metadata("design:type", String)
-], SignUpDto.prototype, "email", void 0);
+], LoginDto.prototype, "email", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.MinLength)(8),
     __metadata("design:type", String)
-], SignUpDto.prototype, "password", void 0);
-//# sourceMappingURL=signup.dto.js.map
+], LoginDto.prototype, "password", void 0);
+//# sourceMappingURL=Login.dto.js.map

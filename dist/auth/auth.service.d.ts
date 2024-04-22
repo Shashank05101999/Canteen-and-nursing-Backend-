@@ -25,8 +25,16 @@
 import { User } from './schema/user.schema';
 import { Model } from 'mongoose';
 import { SignUpDto } from './dto/signup.dto';
+import { LoginDto } from './dto/Login.dto';
+import { JwtService } from '@nestjs/jwt';
 export declare class AuthService {
     private userModel;
-    constructor(userModel: Model<User>);
-    signUp(signUpDto: SignUpDto): Promise<User>;
+    private jwtService;
+    constructor(userModel: Model<User>, jwtService: JwtService);
+    signUp(signUpDto: SignUpDto): Promise<{
+        token: string;
+    }>;
+    login(LoginDto: LoginDto): Promise<{
+        token: string;
+    }>;
 }

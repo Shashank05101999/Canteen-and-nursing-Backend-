@@ -34,7 +34,7 @@ exports.AppModule = AppModule = __decorate([
             combo_module_1.ComboModule,
             Nursing_module_1.NursingModule,
             Medicinestock_module_1.MedicineStockModule,
-            auth_module_1.AuthModule
+            auth_module_1.AuthModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [
