@@ -21,10 +21,10 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async signUp(signUpDto: SignUpDto): Promise<{ token: string }> {
+  async signUp(signUpDto: SignUpDto): Promise<{ token:string }> {
     const { name, email, password } = signUpDto;
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password,10);
     try {
       const user = await this.userModel.create({
         name,
@@ -49,13 +49,13 @@ export class AuthService {
     const user = await this.userModel.findOne({ email }).select('+password');
 
     if (!user) {
-      throw new UnauthorizedException('invalid email adress or  password');
+      throw new UnauthorizedException('invalid email');
     }
 
     //check if password is correct or not
     const isPasswordMatched = await bcrypt.compare(password, user.password);
     if (!isPasswordMatched) {
-      throw new UnauthorizedException('invalid email adress or  password');
+      throw new UnauthorizedException('invalid password');
     }
     const token = await APIfeatures.assignJwtToken(user._id,user.email,user.name, this.jwtService);
 

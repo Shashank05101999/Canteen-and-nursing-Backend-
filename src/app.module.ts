@@ -11,6 +11,7 @@ import { APP_PIPE } from '@nestjs/core';
 import { NursingModule } from './Nursing Details/schemas/Nursing.module';
 import { MedicineStockModule } from './Medicine Stock/schema/Medicinestock.module';
 import { AuthModule } from './auth/auth.module';
+import { PrescriptionModule } from './prescriptions/schema/prescription.module';
 
 // import { fileUploadModule } from './file-upload/file-upload.module';
 @Module({
@@ -26,6 +27,7 @@ import { AuthModule } from './auth/auth.module';
     NursingModule,
     MedicineStockModule,
     AuthModule,
+    PrescriptionModule,
   ],
 
   controllers: [AppController],

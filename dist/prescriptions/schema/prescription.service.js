@@ -12,44 +12,41 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.NursingService = void 0;
+exports.PrescriptionService = void 0;
 const common_1 = require("@nestjs/common");
-const Nursing_schema_1 = require("./Nursing.schema");
 const mongoose_1 = require("mongoose");
+const prescription_schema_1 = require("./prescription.schema");
 const mongoose_2 = require("@nestjs/mongoose");
-let NursingService = class NursingService {
-    constructor(nursingmodel) {
-        this.nursingmodel = nursingmodel;
+let PrescriptionService = class PrescriptionService {
+    constructor(presciptionmodel) {
+        this.presciptionmodel = presciptionmodel;
     }
     async findAll() {
-        const nursing = await this.nursingmodel.find();
-        return nursing;
+        const prep = await this.presciptionmodel.find();
+        return prep;
     }
-    async create(createnursingdto) {
-        const Nur = await this.nursingmodel.create(createnursingdto);
-        return Nur.save();
+    async create(createprescriptiondto) {
+        const prep = await this.presciptionmodel.create(createprescriptiondto);
+        return prep.save();
     }
     async findByID(id) {
-        const nursing = await this.nursingmodel.findById(id);
-        if (!nursing) {
+        const prescription = await this.presciptionmodel.findById(id);
+        if (!prescription) {
             throw new common_1.NotFoundException('Not found the student');
         }
-        return nursing;
+        return prescription;
     }
-    async updateById(id, updatenursingdto) {
-        return await this.nursingmodel.findByIdAndUpdate(id, updatenursingdto, {
-            new: true,
-            runValidators: true,
-        });
+    async updateById(id, updatepresciption) {
+        return await this.presciptionmodel.findByIdAndUpdate(id, updatepresciption);
     }
     async deleteById(id) {
-        return await this.nursingmodel.findByIdAndDelete(id);
+        return await this.presciptionmodel.findByIdAndDelete(id);
     }
 };
-exports.NursingService = NursingService;
-exports.NursingService = NursingService = __decorate([
+exports.PrescriptionService = PrescriptionService;
+exports.PrescriptionService = PrescriptionService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_2.InjectModel)(Nursing_schema_1.Nursing.name)),
+    __param(0, (0, mongoose_2.InjectModel)(prescription_schema_1.Prescription.name)),
     __metadata("design:paramtypes", [mongoose_1.default.Model])
-], NursingService);
-//# sourceMappingURL=Nursing.service.js.map
+], PrescriptionService);
+//# sourceMappingURL=prescription.service.js.map

@@ -21,17 +21,16 @@
 /// <reference types="mongoose/types/utility" />
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Nursing } from './Nursing.schema';
-import mongoose from 'mongoose';
-import { CreateNursingDto } from '../Dto/Create-Nursing.dto';
-import { UpdateNursingDto } from '../Dto/Update-nursing.dto';
-export declare class NursingService {
-    private nursingmodel;
-    constructor(nursingmodel: mongoose.Model<Nursing>);
-    findAll(): Promise<Nursing[]>;
-    create(createnursingdto: CreateNursingDto): Promise<Nursing>;
-    findByID(id: string): Promise<Nursing>;
-    updateById(id: string, updatenursingdto: UpdateNursingDto): Promise<Nursing>;
-    deleteById(id: string): Promise<Nursing>;
+export declare class Prescription {
+    StudentName: string;
+    Daigonsis: string;
+    Medication: string;
+    Remark: string;
 }
+export declare const PrescriptionSchema: import("mongoose").Schema<Prescription, import("mongoose").Model<Prescription, any, any, any, import("mongoose").Document<unknown, any, Prescription> & Prescription & {
+    _id: import("mongoose").Types.ObjectId;
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Prescription, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<Prescription>> & import("mongoose").FlatRecord<Prescription> & {
+    _id: import("mongoose").Types.ObjectId;
+}>;

@@ -2,7 +2,8 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Nursing } from './Nursing.schema';
 import mongoose from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { promises } from 'fs';
+import { CreateNursingDto } from '../Dto/Create-Nursing.dto';
+import { UpdateNursingDto } from '../Dto/Update-nursing.dto';
 
 @Injectable()
 export class NursingService {
@@ -16,8 +17,8 @@ export class NursingService {
     return nursing;
   }
 
-  async create(nursing: Nursing): Promise<Nursing> {
-    const Nur = await this.nursingmodel.create(nursing);
+  async create(createnursingdto: CreateNursingDto): Promise<Nursing> {
+    const Nur = await this.nursingmodel.create(createnursingdto);
     return Nur.save();
   }
 
@@ -29,8 +30,11 @@ export class NursingService {
     return nursing;
   }
 
-  async updateById(id: string, nursing: Nursing): Promise<Nursing> {
-    return await this.nursingmodel.findByIdAndUpdate(id, nursing, {
+  async updateById(
+    id: string,
+    updatenursingdto: UpdateNursingDto,
+  ): Promise<Nursing> {
+    return await this.nursingmodel.findByIdAndUpdate(id, updatenursingdto, {
       new: true,
       runValidators: true,
     });

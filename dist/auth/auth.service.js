@@ -47,11 +47,11 @@ let AuthService = class AuthService {
         const { email, password } = LoginDto;
         const user = await this.userModel.findOne({ email }).select('+password');
         if (!user) {
-            throw new common_1.UnauthorizedException('invalid email adress or  password');
+            throw new common_1.UnauthorizedException('invalid email');
         }
         const isPasswordMatched = await bcrypt.compare(password, user.password);
         if (!isPasswordMatched) {
-            throw new common_1.UnauthorizedException('invalid email adress or  password');
+            throw new common_1.UnauthorizedException('invalid password');
         }
         const token = await apifeatures_utils_1.default.assignJwtToken(user._id, user.email, user.name, this.jwtService);
         return { token };

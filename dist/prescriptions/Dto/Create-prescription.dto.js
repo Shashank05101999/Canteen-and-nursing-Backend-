@@ -9,18 +9,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LoginDto = void 0;
+exports.CreatePrescriptionDto = exports.medication = void 0;
 const class_validator_1 = require("class-validator");
-class LoginDto {
+var medication;
+(function (medication) {
+    medication["Medication"] = "Yes";
+    medication["Medication_"] = "No";
+})(medication || (exports.medication = medication = {}));
+class CreatePrescriptionDto {
 }
-exports.LoginDto = LoginDto;
-__decorate([
-    (0, class_validator_1.IsEmail)({}, { message: 'please enter correct email address' }),
-    __metadata("design:type", String)
-], LoginDto.prototype, "email", void 0);
+exports.CreatePrescriptionDto = CreatePrescriptionDto;
 __decorate([
     (0, class_validator_1.IsString)(),
-    (0, class_validator_1.MinLength)(8),
     __metadata("design:type", String)
-], LoginDto.prototype, "password", void 0);
-//# sourceMappingURL=Login.dto.js.map
+], CreatePrescriptionDto.prototype, "StudentName", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreatePrescriptionDto.prototype, "Daigonsis", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsEnum)(medication),
+    __metadata("design:type", String)
+], CreatePrescriptionDto.prototype, "Medication", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreatePrescriptionDto.prototype, "Remark", void 0);
+//# sourceMappingURL=Create-prescription.dto.js.map

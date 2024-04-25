@@ -19,6 +19,7 @@ const core_1 = require("@nestjs/core");
 const Nursing_module_1 = require("./Nursing Details/schemas/Nursing.module");
 const Medicinestock_module_1 = require("./Medicine Stock/schema/Medicinestock.module");
 const auth_module_1 = require("./auth/auth.module");
+const prescription_module_1 = require("./prescriptions/schema/prescription.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -35,6 +36,7 @@ exports.AppModule = AppModule = __decorate([
             Nursing_module_1.NursingModule,
             Medicinestock_module_1.MedicineStockModule,
             auth_module_1.AuthModule,
+            prescription_module_1.PrescriptionModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [

@@ -37,6 +37,7 @@ __decorate([
         enum: UserRoles,
         default: UserRoles.USER,
     }),
+    (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], User.prototype, "role", void 0);
 exports.User = User = __decorate([

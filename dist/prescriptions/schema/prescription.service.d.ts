@@ -22,16 +22,16 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Nursing } from './Nursing.schema';
 import mongoose from 'mongoose';
-import { CreateNursingDto } from '../Dto/Create-Nursing.dto';
-import { UpdateNursingDto } from '../Dto/Update-nursing.dto';
-export declare class NursingService {
-    private nursingmodel;
-    constructor(nursingmodel: mongoose.Model<Nursing>);
-    findAll(): Promise<Nursing[]>;
-    create(createnursingdto: CreateNursingDto): Promise<Nursing>;
-    findByID(id: string): Promise<Nursing>;
-    updateById(id: string, updatenursingdto: UpdateNursingDto): Promise<Nursing>;
-    deleteById(id: string): Promise<Nursing>;
+import { Prescription } from './prescription.schema';
+import { CreatePrescriptionDto } from '../Dto/Create-prescription.dto';
+import { UpdatePresciptionDto } from '../Dto/Update-prescription.dto';
+export declare class PrescriptionService {
+    private presciptionmodel;
+    constructor(presciptionmodel: mongoose.Model<Prescription>);
+    findAll(): Promise<Prescription[]>;
+    create(createprescriptiondto: CreatePrescriptionDto): Promise<Prescription>;
+    findByID(id: string): Promise<Prescription>;
+    updateById(id: string, updatepresciption: UpdatePresciptionDto): Promise<Prescription>;
+    deleteById(id: string): Promise<Prescription>;
 }

@@ -9,18 +9,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LoginDto = void 0;
+exports.PrescriptionSchema = exports.Prescription = void 0;
+const mongoose_1 = require("@nestjs/mongoose");
 const class_validator_1 = require("class-validator");
-class LoginDto {
-}
-exports.LoginDto = LoginDto;
+let Prescription = class Prescription {
+};
+exports.Prescription = Prescription;
 __decorate([
-    (0, class_validator_1.IsEmail)({}, { message: 'please enter correct email address' }),
-    __metadata("design:type", String)
-], LoginDto.prototype, "email", void 0);
-__decorate([
+    (0, mongoose_1.Prop)(),
     (0, class_validator_1.IsString)(),
-    (0, class_validator_1.MinLength)(8),
     __metadata("design:type", String)
-], LoginDto.prototype, "password", void 0);
-//# sourceMappingURL=Login.dto.js.map
+], Prescription.prototype, "StudentName", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], Prescription.prototype, "Daigonsis", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], Prescription.prototype, "Medication", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], Prescription.prototype, "Remark", void 0);
+exports.Prescription = Prescription = __decorate([
+    (0, mongoose_1.Schema)()
+], Prescription);
+exports.PrescriptionSchema = mongoose_1.SchemaFactory.createForClass(Prescription);
+//# sourceMappingURL=prescription.schema.js.map
