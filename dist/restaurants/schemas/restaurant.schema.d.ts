@@ -26,7 +26,10 @@
 export declare enum Category {
     COMBO_FOOD = "Veg",
     CAFE = "Combo",
-    COMBO_VEG_NONVEG = "Non-Veg"
+    COMBO_VEG_NONVEG = "Non-Veg",
+    veg_ = "veg",
+    combo_ = "combo",
+    non_veg_ = "non-veg"
 }
 export declare class Restaurant {
     name: string;

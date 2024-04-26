@@ -17,6 +17,9 @@ var Category;
     Category["COMBO_FOOD"] = "Veg";
     Category["CAFE"] = "Combo";
     Category["COMBO_VEG_NONVEG"] = "Non-Veg";
+    Category["veg_"] = "veg";
+    Category["combo_"] = "combo";
+    Category["non_veg_"] = "non-veg";
 })(Category || (exports.Category = Category = {}));
 let Restaurant = class Restaurant {
 };
