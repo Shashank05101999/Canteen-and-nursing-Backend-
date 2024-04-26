@@ -86,7 +86,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], NursingController.prototype, "deleteRestaurant", null);
 exports.NursingController = NursingController = __decorate([
-    (0, common_1.Controller)('nursing'),
+    (0, common_1.Controller)('nursings'),
     __metadata("design:paramtypes", [Nursing_service_1.NursingService])
 ], NursingController);
 //# sourceMappingURL=Nursing.controller.js.map

@@ -13,7 +13,7 @@ import { MedicineStock } from './Medicinestock.schema';
 import { CreateMedicineStockDto } from '../Dto/CreateMedicineStock';
 import { UpdateMedicineStockDto } from '../Dto/UpdateMedicineStock';
 
-@Controller('medicinestock')
+@Controller('medicinestocks')
 export class MedicineStockController {
   constructor(private medicinesstockservice: MedicineStockService) {}
 

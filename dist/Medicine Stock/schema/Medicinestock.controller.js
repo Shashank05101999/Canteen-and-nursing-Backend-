@@ -86,7 +86,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MedicineStockController.prototype, "deleteRestaurant", null);
 exports.MedicineStockController = MedicineStockController = __decorate([
-    (0, common_1.Controller)('medicinestock'),
+    (0, common_1.Controller)('medicinestocks'),
     __metadata("design:paramtypes", [Medicinestock_service_1.MedicineStockService])
 ], MedicineStockController);
 //# sourceMappingURL=Medicinestock.controller.js.map

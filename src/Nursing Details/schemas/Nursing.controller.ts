@@ -12,7 +12,7 @@ import { Nursing } from './Nursing.schema';
 import { CreateNursingDto } from '../Dto/Create-Nursing.dto';
 import { UpdateNursingDto } from '../Dto/Update-nursing.dto';
 
-@Controller('nursing')
+@Controller('nursings')
 export class NursingController {
   constructor(private nursingservices: NursingService) {}
 
