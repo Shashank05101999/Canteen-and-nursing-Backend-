@@ -61,7 +61,10 @@ export class ComboService {
     });
   }
 
-  async DeleteById(id: string): Promise<Combo> {
-    return await this.comboModel.findByIdAndUpdate(id);
+  // async DeleteById(id: string): Promise<Combo> {
+  //   return await this.comboModel.findByIdAndUpdate(id);
+
+  async deleteById(id: string): Promise<Combo> {
+    return await this.comboModel.findByIdAndDelete(id);
   }
 }

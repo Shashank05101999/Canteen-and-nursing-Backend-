@@ -33,7 +33,7 @@ export class ComboController {
   @Delete(':id')
   async deleteCombo(@Param('id') id: string): Promise<{ deleted: boolean }> {
     await this.comboService.FindByID(id);
-    const deletedCombo = await this.comboService.DeleteById(id);
+    const deletedCombo = await this.comboService.deleteById(id);
     if (deletedCombo) {
       return {
         deleted: true,

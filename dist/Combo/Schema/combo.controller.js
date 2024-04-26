@@ -37,7 +37,7 @@ let ComboController = class ComboController {
     }
     async deleteCombo(id) {
         await this.comboService.FindByID(id);
-        const deletedCombo = await this.comboService.DeleteById(id);
+        const deletedCombo = await this.comboService.deleteById(id);
         if (deletedCombo) {
             return {
                 deleted: true,

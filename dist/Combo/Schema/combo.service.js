@@ -57,8 +57,8 @@ let ComboService = class ComboService {
             runValidators: true,
         });
     }
-    async DeleteById(id) {
-        return await this.comboModel.findByIdAndUpdate(id);
+    async deleteById(id) {
+        return await this.comboModel.findByIdAndDelete(id);
     }
 };
 exports.ComboService = ComboService;

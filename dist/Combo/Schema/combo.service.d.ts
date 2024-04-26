@@ -33,5 +33,5 @@ export declare class ComboService {
     create(combo: CreateComboDto): Promise<Combo>;
     FindByID(id: string): Promise<Combo>;
     UpdateByID(id: String, combo: Combo): Promise<Combo>;
-    DeleteById(id: string): Promise<Combo>;
+    deleteById(id: string): Promise<Combo>;
 }
