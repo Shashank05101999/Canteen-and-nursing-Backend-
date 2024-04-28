@@ -21,8 +21,16 @@ let CategoryService = class CategoryService {
     constructor(categoryModel) {
         this.categoryModel = categoryModel;
     }
-    async findAll() {
-        const category = await this.categoryModel.find();
+    async findAll(query) {
+        const keyword = query.keyword
+            ? {
+                category: {
+                    $regex: query.keyword,
+                    $options: 'i',
+                },
+            }
+            : {};
+        const category = await this.categoryModel.find({ ...keyword });
         return category;
     }
     async create(category) {

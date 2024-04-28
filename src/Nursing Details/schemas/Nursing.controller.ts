@@ -6,19 +6,24 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { NursingService } from './Nursing.service';
 import { Nursing } from './Nursing.schema';
 import { CreateNursingDto } from '../Dto/Create-Nursing.dto';
 import { UpdateNursingDto } from '../Dto/Update-nursing.dto';
+import { Query as ExpressQuery } from 'express-serve-static-core';
+import { ApiQuery, ApiResponse } from '@nestjs/swagger';
 
 @Controller('nursings')
 export class NursingController {
   constructor(private nursingservices: NursingService) {}
 
+  @ApiQuery({ name: 'keyword', required: false }) // Define query parameter for Swagger documentation
   @Get()
-  async getAllNursing(): Promise<Nursing[]> {
-    return this.nursingservices.findAll();
+  @ApiResponse({ status: 200, description: 'Returns all nursing data' })
+  async getAllNursing(@Query() query: ExpressQuery): Promise<Nursing[]> {
+    return this.nursingservices.findAll(query);
   }
 
   @Post()

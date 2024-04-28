@@ -21,8 +21,16 @@ let MedicineStockService = class MedicineStockService {
     constructor(MedicineStockModel) {
         this.MedicineStockModel = MedicineStockModel;
     }
-    async FindAll() {
-        const medicinestock = await this.MedicineStockModel.find();
+    async FindAll(query) {
+        const keyword = query.keyword
+            ? {
+                MedicineName: {
+                    $regex: query.keyword,
+                    $options: 'i',
+                },
+            }
+            : {};
+        const medicinestock = await this.MedicineStockModel.find({ ...keyword });
         return medicinestock;
     }
     async Create(medicinestock) {

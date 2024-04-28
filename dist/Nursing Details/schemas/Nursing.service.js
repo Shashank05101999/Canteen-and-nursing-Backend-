@@ -21,8 +21,16 @@ let NursingService = class NursingService {
     constructor(nursingmodel) {
         this.nursingmodel = nursingmodel;
     }
-    async findAll() {
-        const nursing = await this.nursingmodel.find();
+    async findAll(query) {
+        const keyword = query.keyword
+            ? {
+                StudentName: {
+                    $regex: query.keyword,
+                    $options: 'i',
+                },
+            }
+            : {};
+        const nursing = await this.nursingmodel.find({ ...keyword });
         return nursing;
     }
     async create(createnursingdto) {

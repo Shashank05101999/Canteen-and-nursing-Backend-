@@ -24,10 +24,11 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { MedicineStock } from './Medicinestock.schema';
 import * as mongoose from 'mongoose';
+import { Query } from 'express-serve-static-core';
 export declare class MedicineStockService {
     private MedicineStockModel;
     constructor(MedicineStockModel: mongoose.Model<MedicineStock>);
-    FindAll(): Promise<MedicineStock[]>;
+    FindAll(query: Query): Promise<MedicineStock[]>;
     Create(medicinestock: MedicineStock): Promise<MedicineStock>;
     findByID(id: string): Promise<MedicineStock>;
     updateById(id: string, medicinestock: MedicineStock): Promise<MedicineStock>;

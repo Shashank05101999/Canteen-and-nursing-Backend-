@@ -7,19 +7,23 @@ import {
   Param,
   Post,
   Put,
+  Query,
   ValidationPipe,
 } from '@nestjs/common';
 import { Body } from '@nestjs/common';
 import { updateCategoryDto } from './dto/update-Category.dto';
 import { CreateCategoryDto } from './dto/create-Category.dto';
+import { Query as ExpressQuery } from 'express-serve-static-core';
+import { ApiQuery, ApiResponse } from '@nestjs/swagger';
 
 @Controller('category')
 export class CategoryController {
   constructor(private categoryservices: CategoryService) {}
-
+  @ApiQuery({ name: 'keyword', required: false }) // Define query parameter for Swagger documentation
   @Get()
-  async getAllCAtegory(): Promise<Category[]> {
-    return this.categoryservices.findAll();
+  @ApiResponse({ status: 200, description: 'Returns all nursing data' })
+  async getAllCAtegory(@Query() query: ExpressQuery): Promise<Category[]> {
+    return this.categoryservices.findAll(query);
   }
 
   @Post()

@@ -22,6 +22,7 @@ const platform_express_1 = require("@nestjs/platform-express");
 const multer_1 = require("multer");
 const swagger_1 = require("@nestjs/swagger");
 const upload_file_dto_1 = require("../dto/upload-file.dto");
+const edit_restaurant_dto_1 = require("../dto/edit-restaurant.dto");
 let RestaurantsController = class RestaurantsController {
     constructor(restaurantsService) {
         this.restaurantsService = restaurantsService;
@@ -67,6 +68,24 @@ let RestaurantsController = class RestaurantsController {
                 status: false,
                 statusText: 'failed to upload file',
                 message: 'failed to upload file',
+            };
+        }
+    }
+    async editFile(file, req, fileId) {
+        const fileUrl = await this.restaurantsService.updateFile(fileId, file, req);
+        if (fileUrl) {
+            return {
+                status: true,
+                statusText: 'File edited',
+                message: 'File edited successfully',
+                fileUrl,
+            };
+        }
+        else {
+            return {
+                status: false,
+                statusText: 'Failed to edit file',
+                message: 'Failed to edit file',
             };
         }
     }
@@ -131,6 +150,30 @@ __decorate([
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], RestaurantsController.prototype, "uploadFiles", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'Edit file with image' }),
+    (0, swagger_1.ApiConsumes)('multipart/form-data'),
+    (0, common_1.Post)('edit-file/:fileId'),
+    (0, swagger_1.ApiBody)({
+        type: edit_restaurant_dto_1.EditImageDto,
+        required: true,
+    }),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('image', {
+        storage: (0, multer_1.diskStorage)({
+            destination: './public',
+            filename: (req, file, callback) => {
+                const originalName = file.originalname;
+                callback(null, originalName);
+            },
+        }),
+    })),
+    __param(0, (0, common_1.UploadedFile)()),
+    __param(1, (0, common_1.Req)()),
+    __param(2, (0, common_1.Param)('fileId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, String]),
+    __metadata("design:returntype", Promise)
+], RestaurantsController.prototype, "editFile", null);
 exports.RestaurantsController = RestaurantsController = __decorate([
     (0, common_1.Controller)('restaurants'),
     __metadata("design:paramtypes", [restaurants_service_1.RestaurantsService])

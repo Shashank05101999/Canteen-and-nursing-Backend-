@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Category } from './Category.schema';
 import * as mongoose from 'mongoose';
 import { promises } from 'fs';
-import { Query } from '@nestjs/common';
+import { Query } from 'express-serve-static-core';
 import { InjectModel } from '@nestjs/mongoose';
 @Injectable()
 export class CategoryService {
@@ -11,8 +11,16 @@ export class CategoryService {
     private categoryModel: mongoose.Model<Category>,
   ) {}
 
-  async findAll(): Promise<Category[]> {
-    const category = await this.categoryModel.find();
+  async findAll(query: Query): Promise<Category[]> {
+    const keyword = query.keyword
+      ? {
+          category: {
+            $regex: query.keyword,
+            $options: 'i',
+          },
+        }
+      : {};
+    const category = await this.categoryModel.find({ ...keyword });
     return category;
   }
 
@@ -20,7 +28,6 @@ export class CategoryService {
     const cat = await this.categoryModel.create(category);
     return cat;
   }
-
 
   async findByID(id: string): Promise<Category> {
     const restaurant = await this.categoryModel.findById(id);

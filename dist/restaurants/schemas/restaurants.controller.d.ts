@@ -26,4 +26,15 @@ export declare class RestaurantsController {
         message: string;
         fileUrl?: undefined;
     }>;
+    editFile(file: Express.Multer.File, req: any, fileId: string): Promise<{
+        status: boolean;
+        statusText: string;
+        message: string;
+        fileUrl: string | true;
+    } | {
+        status: boolean;
+        statusText: string;
+        message: string;
+        fileUrl?: undefined;
+    }>;
 }

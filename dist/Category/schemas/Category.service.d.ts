@@ -24,10 +24,11 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { Category } from './Category.schema';
 import * as mongoose from 'mongoose';
+import { Query } from 'express-serve-static-core';
 export declare class CategoryService {
     private categoryModel;
     constructor(categoryModel: mongoose.Model<Category>);
-    findAll(): Promise<Category[]>;
+    findAll(query: Query): Promise<Category[]>;
     create(category: Category): Promise<Category>;
     findByID(id: string): Promise<Category>;
     updateById(id: string, restaurant: Category): Promise<Category>;

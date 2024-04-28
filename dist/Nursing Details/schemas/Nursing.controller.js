@@ -17,12 +17,13 @@ const common_1 = require("@nestjs/common");
 const Nursing_service_1 = require("./Nursing.service");
 const Create_Nursing_dto_1 = require("../Dto/Create-Nursing.dto");
 const Update_nursing_dto_1 = require("../Dto/Update-nursing.dto");
+const swagger_1 = require("@nestjs/swagger");
 let NursingController = class NursingController {
     constructor(nursingservices) {
         this.nursingservices = nursingservices;
     }
-    async getAllNursing() {
-        return this.nursingservices.findAll();
+    async getAllNursing(query) {
+        return this.nursingservices.findAll(query);
     }
     async createRestaurant(createnursingdto) {
         return this.nursingservices.create(createnursingdto);
@@ -51,9 +52,12 @@ let NursingController = class NursingController {
 };
 exports.NursingController = NursingController;
 __decorate([
+    (0, swagger_1.ApiQuery)({ name: 'keyword', required: false }),
     (0, common_1.Get)(),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Returns all nursing data' }),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], NursingController.prototype, "getAllNursing", null);
 __decorate([

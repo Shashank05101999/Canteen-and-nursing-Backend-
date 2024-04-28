@@ -17,12 +17,13 @@ const common_1 = require("@nestjs/common");
 const Medicinestock_service_1 = require("./Medicinestock.service");
 const CreateMedicineStock_1 = require("../Dto/CreateMedicineStock");
 const UpdateMedicineStock_1 = require("../Dto/UpdateMedicineStock");
+const swagger_1 = require("@nestjs/swagger");
 let MedicineStockController = class MedicineStockController {
     constructor(medicinesstockservice) {
         this.medicinesstockservice = medicinesstockservice;
     }
-    async GetAllMedicineStock() {
-        return this.medicinesstockservice.FindAll();
+    async GetAllMedicineStock(query) {
+        return this.medicinesstockservice.FindAll(query);
     }
     async CreateMedicineStock(createMedicineStockDto) {
         return this.medicinesstockservice.Create(createMedicineStockDto);
@@ -51,9 +52,12 @@ let MedicineStockController = class MedicineStockController {
 };
 exports.MedicineStockController = MedicineStockController;
 __decorate([
+    (0, swagger_1.ApiQuery)({ name: 'keyword', required: false }),
     (0, common_1.Get)(),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Returns all nursing data' }),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], MedicineStockController.prototype, "GetAllMedicineStock", null);
 __decorate([

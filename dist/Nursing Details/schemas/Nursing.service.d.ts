@@ -26,10 +26,11 @@ import { Nursing } from './Nursing.schema';
 import mongoose from 'mongoose';
 import { CreateNursingDto } from '../Dto/Create-Nursing.dto';
 import { UpdateNursingDto } from '../Dto/Update-nursing.dto';
+import { Query } from 'express-serve-static-core';
 export declare class NursingService {
     private nursingmodel;
     constructor(nursingmodel: mongoose.Model<Nursing>);
-    findAll(): Promise<Nursing[]>;
+    findAll(query: Query): Promise<Nursing[]>;
     create(createnursingdto: CreateNursingDto): Promise<Nursing>;
     findByID(id: string): Promise<Nursing>;
     updateById(id: string, updatenursingdto: UpdateNursingDto): Promise<Nursing>;

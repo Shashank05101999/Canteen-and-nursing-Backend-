@@ -20,6 +20,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { ApiBody, ApiConsumes, ApiOperation } from '@nestjs/swagger';
 import { FileUploadDto } from '../dto/upload-file.dto';
+import { EditImageDto } from '../dto/edit-restaurant.dto';
 
 @Controller('restaurants')
 export class RestaurantsController {
@@ -71,35 +72,6 @@ export class RestaurantsController {
     }
   }
 
-  //------------
-  // @ApiOperation({ summary: 'Upload file with image' })
-  // @ApiConsumes('multipart/form-data')
-  // @Post('upload-file')
-  // @UseInterceptors(
-  //   FileInterceptor('image', {
-  //     storage: diskStorage({
-  //       destination: './uploads',
-  //     }),
-  //   }),
-  // )
-  // async uploadFile(@UploadedFile() file: Express.Multer.File, @Req() req: any) {
-  //   const fileUrl = await this.fileUploadService.uploadFile(file, req);
-  //   if (fileUrl) {
-  //     return {
-  //       status: true,
-  //       statusText: 'file uploaded',
-  //       message: 'file uploaded',
-  //       fileUrl,
-  //     };
-  //   } else {
-  //     return {
-  //       status: false,
-  //       statusText: 'failed to upload file',
-  //       message: 'failed to upload file',
-  //     };
-  //   }
-  // }
-
   @ApiOperation({ summary: 'Upload file with image' })
   @ApiConsumes('multipart/form-data')
   @Post('upload-file')
@@ -135,6 +107,45 @@ export class RestaurantsController {
         status: false,
         statusText: 'failed to upload file',
         message: 'failed to upload file',
+      };
+    }
+  }
+  @ApiOperation({ summary: 'Edit file with image' })
+  @ApiConsumes('multipart/form-data')
+  @Post('edit-file/:fileId') // Assuming fileId is the identifier for the file to be edited
+  @ApiBody({
+    type: EditImageDto, // Define FileUploadDto if necessary
+    required: true,
+  })
+  @UseInterceptors(
+    FileInterceptor('image', {
+      storage: diskStorage({
+        destination: './public',
+        filename: (req, file, callback) => {
+          const originalName = file.originalname;
+          callback(null, originalName);
+        },
+      }),
+    }),
+  )
+  async editFile(
+    @UploadedFile() file: Express.Multer.File,
+    @Req() req: any,
+    @Param('fileId') fileId: string, // Assuming fileId is passed as a route parameter
+  ) {
+    const fileUrl = await this.restaurantsService.updateFile(fileId, file, req);
+    if (fileUrl) {
+      return {
+        status: true,
+        statusText: 'File edited',
+        message: 'File edited successfully',
+        fileUrl,
+      };
+    } else {
+      return {
+        status: false,
+        statusText: 'Failed to edit file',
+        message: 'Failed to edit file',
       };
     }
   }

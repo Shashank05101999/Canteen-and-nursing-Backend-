@@ -120,4 +120,32 @@ export class RestaurantsService {
 
     return fileUrls;
   }
+  async updateFile(
+    fileId: string, // Assuming fileId is the unique identifier of the file in the database
+    file: Express.Multer.File,
+    req: any,
+  ): Promise<string | boolean> {
+    if (file) {
+      const fileUrl = req.protocol + '://' + req.headers.host + '/' + file.filename;
+  
+      console.log('fileUrl', fileUrl);
+  
+      // Find the file by its unique identifier
+      const existingFile = await this.restaurantModel.findById(fileId);
+  
+      if (!existingFile) {
+        return false; // File not found
+      }
+  
+      // Update the imageUrl property of the existing file
+      existingFile.fileurl = fileUrl;
+      await existingFile.save();
+  
+      return fileUrl;
+    } else {
+      return false;
+    }
+  }
+  
+
 }

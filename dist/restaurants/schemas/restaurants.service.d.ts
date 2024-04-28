@@ -38,4 +38,5 @@ export declare class RestaurantsService {
     deleteById(id: string): Promise<Restaurant>;
     uploadFile(file: Express.Multer.File, req: any): Promise<string | boolean>;
     uploadFiles(files: Array<Express.Multer.File>, req: any): Promise<string[]>;
+    updateFile(fileId: string, file: Express.Multer.File, req: any): Promise<string | boolean>;
 }

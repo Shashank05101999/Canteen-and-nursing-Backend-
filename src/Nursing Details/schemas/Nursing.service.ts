@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateNursingDto } from '../Dto/Create-Nursing.dto';
 import { UpdateNursingDto } from '../Dto/Update-nursing.dto';
-
+import { Query } from 'express-serve-static-core';
 @Injectable()
 export class NursingService {
   constructor(
@@ -12,8 +12,16 @@ export class NursingService {
     private nursingmodel: mongoose.Model<Nursing>,
   ) {}
 
-  async findAll(): Promise<Nursing[]> {
-    const nursing: Nursing[] = await this.nursingmodel.find();
+  async findAll(query: Query): Promise<Nursing[]> {
+    const keyword = query.keyword
+      ? {
+          StudentName: {
+            $regex: query.keyword,
+            $options: 'i',
+          },
+        }
+      : {};
+    const nursing: Nursing[] = await this.nursingmodel.find({ ...keyword });
     return nursing;
   }
 

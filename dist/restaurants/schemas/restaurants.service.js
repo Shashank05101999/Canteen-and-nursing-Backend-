@@ -74,6 +74,22 @@ let RestaurantsService = class RestaurantsService {
         }
         return fileUrls;
     }
+    async updateFile(fileId, file, req) {
+        if (file) {
+            const fileUrl = req.protocol + '://' + req.headers.host + '/' + file.filename;
+            console.log('fileUrl', fileUrl);
+            const existingFile = await this.restaurantModel.findById(fileId);
+            if (!existingFile) {
+                return false;
+            }
+            existingFile.fileurl = fileUrl;
+            await existingFile.save();
+            return fileUrl;
+        }
+        else {
+            return false;
+        }
+    }
 };
 exports.RestaurantsService = RestaurantsService;
 exports.RestaurantsService = RestaurantsService = __decorate([
