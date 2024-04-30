@@ -21,8 +21,18 @@ let PrescriptionService = class PrescriptionService {
     constructor(presciptionmodel) {
         this.presciptionmodel = presciptionmodel;
     }
-    async findAll() {
-        const prep = await this.presciptionmodel.find();
+    async findAll(query) {
+        const keyword = query.keyword
+            ? {
+                StudentName: {
+                    $regex: query.keyword,
+                    $options: 'i',
+                },
+            }
+            : {};
+        const prep = await this.presciptionmodel.find({
+            ...keyword,
+        });
         return prep;
     }
     async create(createprescriptiondto) {

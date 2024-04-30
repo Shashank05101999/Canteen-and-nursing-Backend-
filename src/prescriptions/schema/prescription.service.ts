@@ -4,7 +4,7 @@ import { Prescription } from './prescription.schema';
 import { CreatePrescriptionDto } from '../Dto/Create-prescription.dto';
 import { UpdatePresciptionDto } from '../Dto/Update-prescription.dto';
 import { InjectModel } from '@nestjs/mongoose';
-
+import { Query } from 'express-serve-static-core';
 @Injectable()
 export class PrescriptionService {
   constructor(
@@ -12,8 +12,18 @@ export class PrescriptionService {
     private presciptionmodel: mongoose.Model<Prescription>,
   ) {}
 
-  async findAll(): Promise<Prescription[]> {
-    const prep: Prescription[] = await this.presciptionmodel.find();
+  async findAll(query: Query): Promise<Prescription[]> {
+    const keyword = query.keyword
+      ? {
+          StudentName: {
+            $regex: query.keyword,
+            $options: 'i',
+          },
+        }
+      : {};
+    const prep: Prescription[] = await this.presciptionmodel.find({
+      ...keyword,
+    });
     return prep;
   }
 
@@ -36,10 +46,7 @@ export class PrescriptionService {
     id: string,
     updatepresciption: UpdatePresciptionDto,
   ): Promise<Prescription> {
-    return await this.presciptionmodel.findByIdAndUpdate(
-      id,
-      updatepresciption,
-    );
+    return await this.presciptionmodel.findByIdAndUpdate(id, updatepresciption);
   }
 
   async deleteById(id: string): Promise<Prescription> {

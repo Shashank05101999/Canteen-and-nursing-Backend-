@@ -26,10 +26,11 @@ import mongoose from 'mongoose';
 import { Prescription } from './prescription.schema';
 import { CreatePrescriptionDto } from '../Dto/Create-prescription.dto';
 import { UpdatePresciptionDto } from '../Dto/Update-prescription.dto';
+import { Query } from 'express-serve-static-core';
 export declare class PrescriptionService {
     private presciptionmodel;
     constructor(presciptionmodel: mongoose.Model<Prescription>);
-    findAll(): Promise<Prescription[]>;
+    findAll(query: Query): Promise<Prescription[]>;
     create(createprescriptiondto: CreatePrescriptionDto): Promise<Prescription>;
     findByID(id: string): Promise<Prescription>;
     updateById(id: string, updatepresciption: UpdatePresciptionDto): Promise<Prescription>;

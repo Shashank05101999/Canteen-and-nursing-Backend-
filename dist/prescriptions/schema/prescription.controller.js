@@ -18,12 +18,13 @@ const common_2 = require("@nestjs/common");
 const prescription_service_1 = require("./prescription.service");
 const Create_prescription_dto_1 = require("../Dto/Create-prescription.dto");
 const Update_prescription_dto_1 = require("../Dto/Update-prescription.dto");
+const swagger_1 = require("@nestjs/swagger");
 let PrescriptionContoller = class PrescriptionContoller {
     constructor(prescriptionservices) {
         this.prescriptionservices = prescriptionservices;
     }
-    async GetAllPrescription() {
-        return this.prescriptionservices.findAll();
+    async GetAllPrescription(query) {
+        return this.prescriptionservices.findAll(query);
     }
     async CreatePresciption(createnursingdto) {
         return this.prescriptionservices.create(createnursingdto);
@@ -51,9 +52,12 @@ let PrescriptionContoller = class PrescriptionContoller {
 };
 exports.PrescriptionContoller = PrescriptionContoller;
 __decorate([
+    (0, swagger_1.ApiQuery)({ name: 'keyword', required: false }),
     (0, common_1.Get)(),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Returns all nursing data' }),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], PrescriptionContoller.prototype, "GetAllPrescription", null);
 __decorate([
