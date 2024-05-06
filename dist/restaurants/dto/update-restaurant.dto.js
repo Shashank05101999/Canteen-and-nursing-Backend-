@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateRestaurantDto = void 0;
 const class_validator_1 = require("class-validator");
-const restaurant_schema_1 = require("../schemas/restaurant.schema");
 class updateRestaurantDto {
 }
 exports.updateRestaurantDto = updateRestaurantDto;
@@ -36,7 +35,7 @@ __decorate([
     __metadata("design:type", Date)
 ], updateRestaurantDto.prototype, "expiredate", void 0);
 __decorate([
-    (0, class_validator_1.IsEnum)(restaurant_schema_1.Category),
+    (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], updateRestaurantDto.prototype, "category", void 0);

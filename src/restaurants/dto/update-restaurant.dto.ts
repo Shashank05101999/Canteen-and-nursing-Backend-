@@ -8,7 +8,6 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { Category } from '../schemas/restaurant.schema';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class updateRestaurantDto {
@@ -28,7 +27,7 @@ export class updateRestaurantDto {
   @IsOptional()
   readonly expiredate: Date;
 
-  @IsEnum(Category)
+  @IsString()
   @IsOptional()
   readonly category: string;
 

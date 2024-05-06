@@ -7,8 +7,6 @@ import {
   IsDate,
   IsISO8601,
 } from 'class-validator';
-import { Category } from '../schemas/restaurant.schema';
-
 export class CreateRestaurantDto {
   @IsString()
   readonly name: string;
@@ -22,7 +20,7 @@ export class CreateRestaurantDto {
   @IsISO8601()
   readonly expiredate: Date;
 
-  @IsEnum(Category)
+  @IsString()
   readonly category: string;
 
   @IsNumber()

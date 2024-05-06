@@ -16,7 +16,6 @@ export class CreateComboDto {
   price: number;
 
   @IsNotEmpty()
-  
   fileurl: string;
 
   @IsNotEmpty()

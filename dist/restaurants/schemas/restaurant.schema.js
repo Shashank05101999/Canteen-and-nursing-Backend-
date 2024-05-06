@@ -9,18 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RestaurantSchema = exports.Restaurant = exports.Category = void 0;
+exports.RestaurantSchema = exports.Restaurant = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const class_validator_1 = require("class-validator");
-var Category;
-(function (Category) {
-    Category["COMBO_FOOD"] = "Veg";
-    Category["CAFE"] = "Combo";
-    Category["COMBO_VEG_NONVEG"] = "Non-Veg";
-    Category["veg_"] = "veg";
-    Category["combo_"] = "combo";
-    Category["non_veg_"] = "non-veg";
-})(Category || (exports.Category = Category = {}));
 let Restaurant = class Restaurant {
 };
 exports.Restaurant = Restaurant;

@@ -1,14 +1,6 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import { IsISO8601, IsNumber, IsString } from 'class-validator';
 
-export enum Category {
-  COMBO_FOOD = 'Veg',
-  CAFE = 'Combo',
-  COMBO_VEG_NONVEG = 'Non-Veg',
-  veg_ = 'veg',
-  combo_ = 'combo',
-  non_veg_ = 'non-veg',
-}
 
 @Schema()
 export class Restaurant {
