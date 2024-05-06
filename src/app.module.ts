@@ -12,6 +12,7 @@ import { NursingModule } from './Nursing Details/schemas/Nursing.module';
 import { MedicineStockModule } from './Medicine Stock/schema/Medicinestock.module';
 import { AuthModule } from './auth/auth.module';
 import { PrescriptionModule } from './prescriptions/schema/prescription.module';
+import { MedicineAllotmentModule } from './Medicine Allotment/schema/MedicineAllotment.module';
 
 // import { fileUploadModule } from './file-upload/file-upload.module';
 @Module({
@@ -28,6 +29,7 @@ import { PrescriptionModule } from './prescriptions/schema/prescription.module';
     MedicineStockModule,
     AuthModule,
     PrescriptionModule,
+    MedicineAllotmentModule,
   ],
 
   controllers: [AppController],

@@ -48,7 +48,7 @@ export class MedicineStockController {
   }
 
   @Delete(':id')
-  async deleteRestaurant(
+  async deleteMedicineStock(
     @Param('id') id: string,
   ): Promise<{ deleted: boolean }> {
     await this.medicinesstockservice.findByID(id);

@@ -10,7 +10,7 @@ export declare class MedicineStockController {
     CreateMedicineStock(createMedicineStockDto: CreateMedicineStockDto): Promise<MedicineStock>;
     getmedicnestock(id: string): Promise<MedicineStock>;
     updateMedicineStock(id: string, updateMedicineStockDto: UpdateMedicineStockDto): Promise<MedicineStock>;
-    deleteRestaurant(id: string): Promise<{
+    deleteMedicineStock(id: string): Promise<{
         deleted: boolean;
     }>;
 }

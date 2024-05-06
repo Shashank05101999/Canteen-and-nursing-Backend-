@@ -12,33 +12,33 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MedicineStockController = void 0;
+exports.MedicineAllotmentController = void 0;
 const common_1 = require("@nestjs/common");
-const Medicinestock_service_1 = require("./Medicinestock.service");
-const CreateMedicineStock_1 = require("../Dto/CreateMedicineStock");
-const UpdateMedicineStock_1 = require("../Dto/UpdateMedicineStock");
+const MedicineAllotment_service_1 = require("./MedicineAllotment.service");
 const swagger_1 = require("@nestjs/swagger");
-let MedicineStockController = class MedicineStockController {
-    constructor(medicinesstockservice) {
-        this.medicinesstockservice = medicinesstockservice;
+const CreateMedicineAllotmentDTO_1 = require("../dto/CreateMedicineAllotmentDTO");
+const UpdateMedicineAllotmentDto_1 = require("../dto/UpdateMedicineAllotmentDto");
+let MedicineAllotmentController = class MedicineAllotmentController {
+    constructor(medicineallotmentservice) {
+        this.medicineallotmentservice = medicineallotmentservice;
     }
-    async GetAllMedicineStock(query) {
-        return this.medicinesstockservice.FindAll(query);
+    async GetAllMedicineAllotment(query) {
+        return this.medicineallotmentservice.FindAll(query);
     }
-    async CreateMedicineStock(createMedicineStockDto) {
-        return this.medicinesstockservice.Create(createMedicineStockDto);
+    async CreateMedicineAllotment(createmedicineallotmentdto) {
+        return this.medicineallotmentservice.Create(createmedicineallotmentdto);
     }
-    async getmedicnestock(id) {
-        return this.medicinesstockservice.findByID(id);
+    async GetMedicineAlloment(id) {
+        return this.medicineallotmentservice.findByID(id);
     }
-    async updateMedicineStock(id, updateMedicineStockDto) {
-        await this.medicinesstockservice.findByID(id);
-        return this.medicinesstockservice.updateById(id, updateMedicineStockDto);
+    async UpdateMedicineAllotment(id, updatemedicineallotmentdto) {
+        await this.medicineallotmentservice.findByID(id);
+        return this.medicineallotmentservice.updateById(id, updatemedicineallotmentdto);
     }
-    async deleteMedicineStock(id) {
-        await this.medicinesstockservice.findByID(id);
-        const deletedmedicine = await this.medicinesstockservice.DeleteById(id);
-        if (deletedmedicine) {
+    async DeletePrescription(id) {
+        await this.medicineallotmentservice.findByID(id);
+        const deleteprescription = await this.medicineallotmentservice.deleteById(id);
+        if (deleteprescription) {
             return {
                 deleted: true,
             };
@@ -50,47 +50,50 @@ let MedicineStockController = class MedicineStockController {
         }
     }
 };
-exports.MedicineStockController = MedicineStockController;
+exports.MedicineAllotmentController = MedicineAllotmentController;
 __decorate([
     (0, swagger_1.ApiQuery)({ name: 'keyword', required: false }),
     (0, common_1.Get)(),
-    (0, swagger_1.ApiResponse)({ status: 200, description: 'Returns all nursing data' }),
+    (0, swagger_1.ApiResponse)({
+        status: 200,
+        description: 'Return all Medicine Allotment data',
+    }),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], MedicineStockController.prototype, "GetAllMedicineStock", null);
+], MedicineAllotmentController.prototype, "GetAllMedicineAllotment", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [CreateMedicineStock_1.CreateMedicineStockDto]),
+    __metadata("design:paramtypes", [CreateMedicineAllotmentDTO_1.CreateMedicineAllotmentDto]),
     __metadata("design:returntype", Promise)
-], MedicineStockController.prototype, "CreateMedicineStock", null);
+], MedicineAllotmentController.prototype, "CreateMedicineAllotment", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], MedicineStockController.prototype, "getmedicnestock", null);
+], MedicineAllotmentController.prototype, "GetMedicineAlloment", null);
 __decorate([
     (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, UpdateMedicineStock_1.UpdateMedicineStockDto]),
+    __metadata("design:paramtypes", [String, UpdateMedicineAllotmentDto_1.UpdateMedicineAllotmentDto]),
     __metadata("design:returntype", Promise)
-], MedicineStockController.prototype, "updateMedicineStock", null);
+], MedicineAllotmentController.prototype, "UpdateMedicineAllotment", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], MedicineStockController.prototype, "deleteMedicineStock", null);
-exports.MedicineStockController = MedicineStockController = __decorate([
-    (0, common_1.Controller)('medicinestocks'),
-    __metadata("design:paramtypes", [Medicinestock_service_1.MedicineStockService])
-], MedicineStockController);
-//# sourceMappingURL=Medicinestock.controller.js.map
+], MedicineAllotmentController.prototype, "DeletePrescription", null);
+exports.MedicineAllotmentController = MedicineAllotmentController = __decorate([
+    (0, common_1.Controller)('MedicineAllotment'),
+    __metadata("design:paramtypes", [MedicineAllotment_service_1.MedicineAllotmentService])
+], MedicineAllotmentController);
+//# sourceMappingURL=MedicineAllotment.controller.js.map
