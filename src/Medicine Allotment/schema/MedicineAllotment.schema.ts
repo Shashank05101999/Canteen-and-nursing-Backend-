@@ -21,11 +21,11 @@ export class MedicineAllotment {
 
   @Prop()
   @IsString()
-  Initial:string;
+  Initial: string;
 
   @Prop()
-  @IsNumber()
-  Issuetime: Number;
+  @IsString()
+  Issuetime: string;
 
   @Prop()
   @IsISO8601()

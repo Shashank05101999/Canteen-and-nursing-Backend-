@@ -21,9 +21,9 @@ export class UpdateMedicineAllotmentDto {
   @IsOptional()
   Initial: string;
 
-  @IsNumber()
+  @IsString()
   @IsOptional()
-  Issuetime: Number;
+  Issuetime: string;
 
   @IsISO8601()
   @IsOptional()

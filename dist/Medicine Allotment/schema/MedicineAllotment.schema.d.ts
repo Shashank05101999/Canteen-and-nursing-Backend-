@@ -29,7 +29,7 @@ export declare class MedicineAllotment {
     Medicines: string;
     Injuryreason: string;
     Initial: string;
-    Issuetime: Number;
+    Issuetime: string;
     ExpireDate: Date;
 }
 export declare const MedicineAllotmentSchema: import("mongoose").Schema<MedicineAllotment, import("mongoose").Model<MedicineAllotment, any, any, any, import("mongoose").Document<unknown, any, MedicineAllotment> & MedicineAllotment & {

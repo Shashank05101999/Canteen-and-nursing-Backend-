@@ -4,6 +4,6 @@ export declare class UpdateMedicineAllotmentDto {
     Medicines: string;
     Injuryreason: string;
     Initial: string;
-    Issuetime: Number;
+    Issuetime: string;
     ExpireDate: Date;
 }

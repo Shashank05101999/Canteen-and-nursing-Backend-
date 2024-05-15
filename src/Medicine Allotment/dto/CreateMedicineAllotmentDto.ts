@@ -15,9 +15,8 @@ export class CreateMedicineAllotmentDto {
 
   @IsString()
   readonly Initial: string;
-
-  @IsNumber()
-  readonly Issuetime: Number;
+  @IsString()
+  readonly Issuetime: string;
 
   @IsISO8601()
   readonly ExpireDate: Date;

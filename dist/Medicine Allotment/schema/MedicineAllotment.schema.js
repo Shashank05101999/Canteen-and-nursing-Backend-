@@ -42,8 +42,8 @@ __decorate([
 ], MedicineAllotment.prototype, "Initial", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
-    (0, class_validator_1.IsNumber)(),
-    __metadata("design:type", Number)
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
 ], MedicineAllotment.prototype, "Issuetime", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),

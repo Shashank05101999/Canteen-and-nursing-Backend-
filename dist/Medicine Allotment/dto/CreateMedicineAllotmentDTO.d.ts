@@ -4,6 +4,6 @@ export declare class CreateMedicineAllotmentDto {
     readonly Medicines: string;
     readonly Injuryreason: string;
     readonly Initial: string;
-    readonly Issuetime: Number;
+    readonly Issuetime: string;
     readonly ExpireDate: Date;
 }
