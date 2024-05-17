@@ -54,14 +54,14 @@ let AuthService = class AuthService {
             throw new common_1.UnauthorizedException('invalid password');
         }
         const token = await apifeatures_utils_1.default.assignJwtToken(user._id, user.email, user.name, this.jwtService);
-        return { token };
         console.log(user);
+        return { token, user };
     }
 };
 exports.AuthService = AuthService;
 exports.AuthService = AuthService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)(user_schema_1.User.name)),
+    __param(0, (0, mongoose_1.InjectModel)(user_schema_1.AuthUser.name)),
     __metadata("design:paramtypes", [mongoose_2.Model,
         jwt_1.JwtService])
 ], AuthService);

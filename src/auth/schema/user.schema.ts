@@ -6,7 +6,7 @@ export enum UserRoles {
   USER = 'user',
 }
 @Schema()
-export class User  extends Document{
+export class AuthUser extends Document {
   @Prop()
   name: string;
 
@@ -17,11 +17,11 @@ export class User  extends Document{
   password: string;
 
   @Prop({
-  enum: UserRoles,
+    enum: UserRoles,
     default: UserRoles.USER,
   })
   @Prop()
   role: UserRoles;
 }
 
-export const UserSchema = SchemaFactory.createForClass(User);
+export const UserSchema = SchemaFactory.createForClass(AuthUser);

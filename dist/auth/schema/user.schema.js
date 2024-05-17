@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserSchema = exports.User = exports.UserRoles = void 0;
+exports.UserSchema = exports.AuthUser = exports.UserRoles = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 var UserRoles;
@@ -17,21 +17,21 @@ var UserRoles;
     UserRoles["ADMIN"] = "admin";
     UserRoles["USER"] = "user";
 })(UserRoles || (exports.UserRoles = UserRoles = {}));
-let User = class User extends mongoose_2.Document {
+let AuthUser = class AuthUser extends mongoose_2.Document {
 };
-exports.User = User;
+exports.AuthUser = AuthUser;
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], User.prototype, "name", void 0);
+], AuthUser.prototype, "name", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ unique: [true, 'Duplicate email enterd'] }),
     __metadata("design:type", String)
-], User.prototype, "email", void 0);
+], AuthUser.prototype, "email", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ select: false }),
     __metadata("design:type", String)
-], User.prototype, "password", void 0);
+], AuthUser.prototype, "password", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
         enum: UserRoles,
@@ -39,9 +39,9 @@ __decorate([
     }),
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], User.prototype, "role", void 0);
-exports.User = User = __decorate([
+], AuthUser.prototype, "role", void 0);
+exports.AuthUser = AuthUser = __decorate([
     (0, mongoose_1.Schema)()
-], User);
-exports.UserSchema = mongoose_1.SchemaFactory.createForClass(User);
+], AuthUser);
+exports.UserSchema = mongoose_1.SchemaFactory.createForClass(AuthUser);
 //# sourceMappingURL=user.schema.js.map

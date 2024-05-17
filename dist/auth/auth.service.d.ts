@@ -22,7 +22,7 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { User } from './schema/user.schema';
+import { AuthUser } from './schema/user.schema';
 import { Model } from 'mongoose';
 import { SignUpDto } from './dto/signup.dto';
 import { LoginDto } from './dto/Login.dto';
@@ -30,11 +30,12 @@ import { JwtService } from '@nestjs/jwt';
 export declare class AuthService {
     private userModel;
     private jwtService;
-    constructor(userModel: Model<User>, jwtService: JwtService);
+    constructor(userModel: Model<AuthUser>, jwtService: JwtService);
     signUp(signUpDto: SignUpDto): Promise<{
         token: string;
     }>;
     login(LoginDto: LoginDto): Promise<{
         token: string;
+        user: Object;
     }>;
 }

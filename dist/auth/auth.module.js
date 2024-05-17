@@ -31,7 +31,7 @@ exports.AuthModule = AuthModule = __decorate([
                     };
                 }
             }),
-            mongoose_1.MongooseModule.forFeature([{ name: 'User', schema: user_schema_1.UserSchema }])
+            mongoose_1.MongooseModule.forFeature([{ name: 'AuthUser', schema: user_schema_1.UserSchema }])
         ],
         controllers: [auth_controller_1.AuthController],
         providers: [auth_service_1.AuthService],

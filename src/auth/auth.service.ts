@@ -4,7 +4,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { User } from './schema/user.schema';
+import { AuthUser } from './schema/user.schema';
 import { Model } from 'mongoose';
 import { SignUpDto } from './dto/signup.dto';
 import { promises } from 'fs';
@@ -16,22 +16,27 @@ import { JwtService } from '@nestjs/jwt';
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectModel(User.name)
-    private userModel: Model<User>,
+    @InjectModel(AuthUser.name)
+    private userModel: Model<AuthUser>,
     private jwtService: JwtService,
   ) {}
 
-  async signUp(signUpDto: SignUpDto): Promise<{ token:string }> {
+  async signUp(signUpDto: SignUpDto): Promise<{ token: string }> {
     const { name, email, password } = signUpDto;
 
-    const hashedPassword = await bcrypt.hash(password,10);
+    const hashedPassword = await bcrypt.hash(password, 10);
     try {
       const user = await this.userModel.create({
         name,
         email,
         password: hashedPassword,
       });
-      const token = await APIfeatures.assignJwtToken(user._id, user.email,user.name, this.jwtService);
+      const token = await APIfeatures.assignJwtToken(
+        user._id,
+        user.email,
+        user.name,
+        this.jwtService,
+      );
 
       return { token };
     } catch (error) {
@@ -43,7 +48,7 @@ export class AuthService {
   }
 
   //login
-  async login(LoginDto: LoginDto): Promise<{ token: string }> {
+  async login(LoginDto: LoginDto): Promise<{ token: string; user: Object }> {
     const { email, password } = LoginDto;
 
     const user = await this.userModel.findOne({ email }).select('+password');
@@ -57,9 +62,13 @@ export class AuthService {
     if (!isPasswordMatched) {
       throw new UnauthorizedException('invalid password');
     }
-    const token = await APIfeatures.assignJwtToken(user._id,user.email,user.name, this.jwtService);
-
-    return { token };
+    const token = await APIfeatures.assignJwtToken(
+      user._id,
+      user.email,
+      user.name,
+      this.jwtService,
+    );
     console.log(user);
+    return { token, user };
   }
 }

@@ -27,14 +27,14 @@ export declare enum UserRoles {
     ADMIN = "admin",
     USER = "user"
 }
-export declare class User extends Document {
+export declare class AuthUser extends Document {
     name: string;
     email: string;
     password: string;
     role: UserRoles;
 }
-export declare const UserSchema: import("mongoose").Schema<User, import("mongoose").Model<User, any, any, any, Document<unknown, any, User> & User & {
+export declare const UserSchema: import("mongoose").Schema<AuthUser, import("mongoose").Model<AuthUser, any, any, any, Document<unknown, any, AuthUser> & AuthUser & {
     _id: import("mongoose").Types.ObjectId;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, User, Document<unknown, {}, import("mongoose").FlatRecord<User>> & import("mongoose").FlatRecord<User> & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, AuthUser, Document<unknown, {}, import("mongoose").FlatRecord<AuthUser>> & import("mongoose").FlatRecord<AuthUser> & {
     _id: import("mongoose").Types.ObjectId;
 }>;
