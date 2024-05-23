@@ -82,70 +82,70 @@ export class RestaurantsService {
   //   }
   // }
 
-  async uploadFile(
-    file: Express.Multer.File,
-    req: any,
-  ): Promise<string | boolean> {
-    if (file) {
-      // Assuming the file is stored in the public folder
-      const fileUrl =
-        req.protocol + '://' + req.headers.host + '/' + file.filename;
+  // async uploadFile(
+  //   file: Express.Multer.File,
+  //   req: any,
+  // ): Promise<string | boolean> {
+  //   if (file) {
+  //     // Assuming the file is stored in the public folder
+  //     const fileUrl =
+  //       req.protocol + '://' + req.headers.host + '/' + file.filename;
 
-      console.log('fileUrl', fileUrl);
+  //     console.log('fileUrl', fileUrl);
 
-      // Assuming the field in the restaurantModel schema is named 'imageUrl'
-      const newFile = await this.restaurantModel.create({ imageUrl: fileUrl });
-      return newFile ? fileUrl : false;
-    } else {
-      return false;
-    }
-  }
+  //     // Assuming the field in the restaurantModel schema is named 'imageUrl'
+  //     const newFile = await this.restaurantModel.create({ imageUrl: fileUrl });
+  //     return newFile ? fileUrl : false;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
-  async uploadFiles(
-    files: Array<Express.Multer.File>,
-    req: any,
-  ): Promise<string[]> {
-    const fileUrls = [];
+  // async uploadFiles(
+  //   files: Array<Express.Multer.File>,
+  //   req: any,
+  // ): Promise<string[]> {
+  //   const fileUrls = [];
 
-    console.log('files', files);
+  //   console.log('files', files);
 
-    for (const file of files) {
-      const fileUrl =
-        req.protocol + '://' + req.headers.host + '/' + file.filename;
-      const newFile = await this.restaurantModel.create({ images: [fileUrl] });
-      if (newFile) {
-        fileUrls.push(fileUrl);
-      }
-    }
+  //   for (const file of files) {
+  //     const fileUrl =
+  //       req.protocol + '://' + req.headers.host + '/' + file.filename;
+  //     const newFile = await this.restaurantModel.create({ images: [fileUrl] });
+  //     if (newFile) {
+  //       fileUrls.push(fileUrl);
+  //     }
+  //   }
 
-    return fileUrls;
-  }
-  async updateFile(
-    fileId: string, // Assuming fileId is the unique identifier of the file in the database
-    file: Express.Multer.File,
-    req: any,
-  ): Promise<string | boolean> {
-    if (file) {
-      const fileUrl = req.protocol + '://' + req.headers.host + '/' + file.filename;
+  //   return fileUrls;
+  // }
+  // async updateFile(
+  //   fileId: string, // Assuming fileId is the unique identifier of the file in the database
+  //   file: Express.Multer.File,
+  //   req: any,
+  // ): Promise<string | boolean> {
+  //   if (file) {
+  //     const fileUrl = req.protocol + '://' + req.headers.host + '/' + file.filename;
   
-      console.log('fileUrl', fileUrl);
+  //     console.log('fileUrl', fileUrl);
   
-      // Find the file by its unique identifier
-      const existingFile = await this.restaurantModel.findById(fileId);
+  //     // Find the file by its unique identifier
+  //     const existingFile = await this.restaurantModel.findById(fileId);
   
-      if (!existingFile) {
-        return false; // File not found
-      }
+  //     if (!existingFile) {
+  //       return false; // File not found
+  //     }
   
-      // Update the imageUrl property of the existing file
-      existingFile.fileurl = fileUrl;
-      await existingFile.save();
+  //     // Update the imageUrl property of the existing file
+  //     existingFile.fileurl = fileUrl;
+  //     await existingFile.save();
   
-      return fileUrl;
-    } else {
-      return false;
-    }
-  }
+  //     return fileUrl;
+  //   } else {
+  //     return false;
+  //   }
+  // }
   
 
 }

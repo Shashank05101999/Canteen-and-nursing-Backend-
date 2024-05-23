@@ -1,4 +1,3 @@
-/// <reference types="multer" />
 import { Restaurant } from './restaurant.schema';
 import { RestaurantsService } from './restaurants.service';
 import { updateRestaurantDto } from '../dto/update-restaurant.dto';
@@ -14,27 +13,5 @@ export declare class RestaurantsController {
     updateRestaurant(id: string, updateRestaurantDto: updateRestaurantDto): Promise<any>;
     deleteRestaurant(id: string): Promise<{
         deleted: boolean;
-    }>;
-    uploadFiles(file: Express.Multer.File, req: any): Promise<{
-        status: boolean;
-        statusText: string;
-        message: string;
-        fileUrl: string | true;
-    } | {
-        status: boolean;
-        statusText: string;
-        message: string;
-        fileUrl?: undefined;
-    }>;
-    editFile(file: Express.Multer.File, req: any, fileId: string): Promise<{
-        status: boolean;
-        statusText: string;
-        message: string;
-        fileUrl: string | true;
-    } | {
-        status: boolean;
-        statusText: string;
-        message: string;
-        fileUrl?: undefined;
     }>;
 }

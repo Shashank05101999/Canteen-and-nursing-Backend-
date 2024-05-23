@@ -51,45 +51,6 @@ let RestaurantsService = class RestaurantsService {
     async deleteById(id) {
         return await this.restaurantModel.findByIdAndDelete(id);
     }
-    async uploadFile(file, req) {
-        if (file) {
-            const fileUrl = req.protocol + '://' + req.headers.host + '/' + file.filename;
-            console.log('fileUrl', fileUrl);
-            const newFile = await this.restaurantModel.create({ imageUrl: fileUrl });
-            return newFile ? fileUrl : false;
-        }
-        else {
-            return false;
-        }
-    }
-    async uploadFiles(files, req) {
-        const fileUrls = [];
-        console.log('files', files);
-        for (const file of files) {
-            const fileUrl = req.protocol + '://' + req.headers.host + '/' + file.filename;
-            const newFile = await this.restaurantModel.create({ images: [fileUrl] });
-            if (newFile) {
-                fileUrls.push(fileUrl);
-            }
-        }
-        return fileUrls;
-    }
-    async updateFile(fileId, file, req) {
-        if (file) {
-            const fileUrl = req.protocol + '://' + req.headers.host + '/' + file.filename;
-            console.log('fileUrl', fileUrl);
-            const existingFile = await this.restaurantModel.findById(fileId);
-            if (!existingFile) {
-                return false;
-            }
-            existingFile.fileurl = fileUrl;
-            await existingFile.save();
-            return fileUrl;
-        }
-        else {
-            return false;
-        }
-    }
 };
 exports.RestaurantsService = RestaurantsService;
 exports.RestaurantsService = RestaurantsService = __decorate([

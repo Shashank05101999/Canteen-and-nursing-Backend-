@@ -1,4 +1,3 @@
-/// <reference types="multer" />
 /// <reference types="mongoose/types/aggregate" />
 /// <reference types="mongoose/types/callback" />
 /// <reference types="mongoose/types/collection" />
@@ -36,7 +35,4 @@ export declare class RestaurantsService {
     findByID(id: string): Promise<Restaurant>;
     updateById(id: string, updateRestaurantDto: updateRestaurantDto): Promise<any>;
     deleteById(id: string): Promise<Restaurant>;
-    uploadFile(file: Express.Multer.File, req: any): Promise<string | boolean>;
-    uploadFiles(files: Array<Express.Multer.File>, req: any): Promise<string[]>;
-    updateFile(fileId: string, file: Express.Multer.File, req: any): Promise<string | boolean>;
 }
